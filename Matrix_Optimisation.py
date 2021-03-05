@@ -52,10 +52,10 @@ if selezione == 'Da Nx a tutti più vicini':
             st.header('Tempi percorsi:')
             st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
             lunghezza
-        with right_column1:
-            nt=Network("1000px","1000px")
-            nt.from_nx(grafo_matrice)
-            nt.show("nx.html")
+        # with right_column1:
+        #     nt=Network("1000px","1000px")
+        #     nt.from_nx(grafo_matrice)
+        #     nt.show("nx.html")
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
@@ -72,7 +72,7 @@ elif selezione == 'Da Nx a Ny':
             st.header('Tempo percorso:')
             st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
-        with right_column1:
-            nt=Network("1000px","1000px")
-            nt.from_nx(grafo_matrice)
-            nt.show("nx.html")   
+        # with right_column1:
+        #     nt=Network("1000px","1000px")
+        #     nt.from_nx(grafo_matrice)
+        #     nt.show("nx.html")   
