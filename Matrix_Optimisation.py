@@ -2,7 +2,7 @@
 import streamlit as st
 import numpy as np
 import networkx as nx
-from pyvis.network import Network
+# from pyvis.network import Network
 
 
 # import plotly.express as px
@@ -15,7 +15,6 @@ st.sidebar.header('Creazione matrice')
 st.sidebar.write('Scrivere la matrice quadrata come da esempio Matrice: 1,2;4,5')
 st.sidebar.write('Usare la , per separe le varie colonne e il ; per andare alla prossima riga')
 input_matrice=st.sidebar.text_area('Scrivere Matrice:')
-
 
 # Creazione matrice
 matrice = np.matrix(input_matrice)
@@ -39,7 +38,7 @@ st.sidebar.write('Calcolo del percorso più corto, Nx nodo di partenza e Ny nodo
 selezione = st.sidebar.radio("Seleziona tipo di calcolo",('Da Nx a tutti più vicini','Da Nx a Ny'))
 if selezione == 'Da Nx a tutti più vicini':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
-    bottone_calcolo = st.sidebar.button('Calcola percorso', key=2)
+    bottone_calcolo = st.sidebar.button('Calcola percorso', key=1)
     if bottone_calcolo:
         grafo_matrice = nx.from_numpy_matrix(matrice_array)
         percorso = nx.single_source_dijkstra_path(grafo_matrice, nodo_partenza, weight='weight')
@@ -59,7 +58,7 @@ if selezione == 'Da Nx a tutti più vicini':
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
-    bottone_calcolo = st.sidebar.button('Calcola percorso', key=3)
+    bottone_calcolo = st.sidebar.button('Calcola percorso', key=2)
     if bottone_calcolo:
         grafo_matrice = nx.from_numpy_matrix(matrice_array)
         percorso = nx.shortest_path(grafo_matrice, source=nodo_partenza, target=nodo_arrivo, weight='weight')
