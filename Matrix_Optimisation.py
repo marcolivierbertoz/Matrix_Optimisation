@@ -2,7 +2,7 @@
 import streamlit as st
 import numpy as np
 import networkx as nx
-from pyvis import network as net
+from pyvis.network import Network
 
 
 # import plotly.express as px
@@ -44,8 +44,6 @@ if selezione == 'Da Nx a tutti più vicini':
         grafo_matrice = nx.from_numpy_matrix(matrice_array)
         percorso = nx.single_source_dijkstra_path(grafo_matrice, nodo_partenza, weight='weight')
         lunghezza = nx.single_source_dijkstra_path_length(grafo_matrice, nodo_partenza, weight='weight')
-        # percorso = nx.single_source_shortest_path(grafo_matrice, nodo_partenza)
-        # lunghezza = nx.single_source_shortest_path_length(grafo_matrice, nodo_partenza)
         with left_column2:
             st.header('Percorsi:')
             st.write('Qui vengono mostrati i vari percorsi che sono stati trovati. I valori a destra corrispondono al ordine di successione, mentre I valori a destra i vari nodi.') 
@@ -54,11 +52,10 @@ if selezione == 'Da Nx a tutti più vicini':
             st.header('Tempi percorsi:')
             st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
             lunghezza
-        ## Plot del grafo
         with right_column1:
-            g=net.Network("1000px","1000px")
-            g.from_nx(grafo_matrice)
-            g.show("nx.html")
+            nt=Network("1000px","1000px")
+            nt.from_nx(grafo_matrice)
+            nt.show("nx.html")
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
@@ -76,6 +73,6 @@ elif selezione == 'Da Nx a Ny':
             st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
         with right_column1:
-            g=net.Network("1000px","1000px")
-            g.from_nx(grafo_matrice)
-            g.show("nx.html")   
+            nt=Network("1000px","1000px")
+            nt.from_nx(grafo_matrice)
+            nt.show("nx.html")   
