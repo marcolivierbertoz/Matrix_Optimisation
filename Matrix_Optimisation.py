@@ -1,5 +1,6 @@
 # Loading packages ##########################################################################
 import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 import networkx as nx
 from pyvis.network import Network
@@ -54,7 +55,7 @@ if selezione == 'Da Nx a tutti più vicini':
         with right_column1:
             nt=Network("1000px","1000px")
             nt.from_nx(grafo_matrice)
-            nt.show("nx.html")
+            components.html(nt.show("nx.html"), width = 500, height=500)
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
@@ -74,4 +75,4 @@ elif selezione == 'Da Nx a Ny':
         with right_column1:
             nt=Network("1000px","1000px")
             nt.from_nx(grafo_matrice)
-            nt.show("nx.html")   
+            components.html(nt.show("nx.html"), width = 500, height=500)  
