@@ -53,7 +53,7 @@ if selezione == 'Da Nx a tutti più vicini':
             st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
             lunghezza
         with right_column1:
-            nt=Network("1000px","1000px")
+            nt=Network("500px","500px")
             nt.from_nx(grafo_matrice)
             components.html(nt.show("nx.html"), width = 500, height=500)
 elif selezione == 'Da Nx a Ny':
@@ -73,6 +73,6 @@ elif selezione == 'Da Nx a Ny':
             st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
         with right_column1:
-            nt=Network("1000px","1000px")
+            nt=Network("500px","500px")
             nt.from_nx(grafo_matrice)
             components.html(nt.show("nx.html"), width = 500, height=500)  
