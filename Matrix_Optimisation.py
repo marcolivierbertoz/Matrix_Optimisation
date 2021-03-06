@@ -3,7 +3,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import numpy as np
 import networkx as nx
-from pyvis.network import Network
+#from pyvis.network import Network
 
 
 # import plotly.express as px
@@ -29,9 +29,9 @@ left_column2, right_column2 = st.beta_columns(2)
 with left_column1:
     st.header('Matrice Quadrata Creata:')
     matrice_array
-with right_column1: 
-    st.header('Visualizzazione del grafo:')
-    st.write('Il grafo verrà visualizzato in una apgina separata, in quanto al momento non riuslta possible integrarlo nella pagina pricipale')  
+# with right_column1: 
+#     st.header('Visualizzazione del grafo:')
+#     st.write('Il grafo verrà visualizzato in una apgina separata, in quanto al momento non riuslta possible integrarlo nella pagina pricipale')  
 
 ##### Creaizone Input per calcolo #######################################################
 st.sidebar.header('Calcolo percorso:')
@@ -52,10 +52,10 @@ if selezione == 'Da Nx a tutti più vicini':
             st.header('Tempi percorsi:')
             st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
             lunghezza
-        with right_column1:
-            nt=Network("500px","500px")
-            nt.from_nx(grafo_matrice)
-            components.html(nt.show("nx.html"), width = 500, height=500)
+        # with right_column1:
+        #     nt=Network("500px","500px")
+        #     nt.from_nx(grafo_matrice)
+        #     components.html(nt.show("nx.html"), width = 500, height=500)
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
@@ -72,7 +72,7 @@ elif selezione == 'Da Nx a Ny':
             st.header('Tempo percorso:')
             st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
-        with right_column1:
-            nt=Network("500px","500px")
-            nt.from_nx(grafo_matrice)
-            components.html(nt.show("nx.html"), width = 500, height=500)  
+        # with right_column1:
+        #     nt=Network("500px","500px")
+        #     nt.from_nx(grafo_matrice)
+        #     components.html(nt.show("nx.html"), width = 500, height=500)  
