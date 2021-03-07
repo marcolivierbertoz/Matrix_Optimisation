@@ -46,8 +46,8 @@ if selezione == 'Da Nx a tutti più vicini':
             st.write('Qui vengono mostrati i vari percorsi che sono stati trovati. I valori a destra corrispondono al ordine di successione, mentre I valori a destra i vari nodi.') 
             percorso
         with right_column2:
-            st.header('Tempi percorsi:')
-            st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
+            st.header('Tempo percorso:')
+            st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
         with right_column1:
             fig, ax = plt.subplots()
@@ -66,8 +66,8 @@ elif selezione == 'Da Nx a Ny':
             st.write('Qui viene mostrato il percorso trovato. I valori a destra corrispondono al ordine di successione, mentre I valori a destra i vari nodi.')
             percorso
         with right_column2:
-            st.header('Tempo percorso:')
-            st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
+            st.header('Tempi percorsi:')
+            st.write('Qui vengono mostrati i vari tempi dei vari percorsi')
             lunghezza
         with right_column1:
             fig, ax = plt.subplots()
