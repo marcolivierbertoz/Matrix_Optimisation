@@ -5,8 +5,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import networkx as nx
 
+from bokeh.io import output_notebook, show, save
+from bokeh.io import output_notebook, show, save
+from bokeh.models import Range1d, Circle, ColumnDataSource, MultiLine
+from bokeh.plotting import figure
+from bokeh.plotting import from_networkx
+
 ###############################################################################################
 st.set_page_config(layout="wide")
+
+##### Creazione expander per matrice ########################################################
+with st.beta_expander('Test', expanded=True):
+    st.write('Test beta expander')
+
 
 ##### Creazione Sidebar ####################################################################
 st.sidebar.title('Ottimizzazione')
@@ -29,6 +40,8 @@ with left_column1:
     matrice_array
 with right_column1: 
     st.header('Visualizzazione del grafo:')
+
+    
     
 ##### Creaizone Input per calcolo #######################################################
 st.sidebar.header('Calcolo percorso:')
@@ -50,9 +63,26 @@ if selezione == 'Da Nx a tutti più vicini':
             st.write('Qui viene mostrato il tempo totale del pecrorso più breve')
             lunghezza
         with right_column1:
-            fig, ax = plt.subplots()
-            ax = nx.draw(grafo_matrice, with_labels=True,node_color='skyblue',pos=nx.circular_layout(grafo_matrice))
-            st.pyplot(fig)
+            # Titolo del grafico
+            title='Grafo'
+            # Create plot
+            plot = figure(tools="pan,wheel_zoom,save,reset", active_scroll='wheel_zoom',
+                            x_range=Range1d(-10.1, 10.1), y_range=Range1d(-10.1, 10.1), title=title)
+
+            network_graph = from_networkx(grafo_matrice, nx.spring_layout, scale=10, center=(0, 0))
+            #Set node size and color
+            network_graph.node_renderer.glyph = Circle(size=15, fill_color='skyblue')
+
+            #Set edge opacity and width
+            network_graph.edge_renderer.glyph = MultiLine(line_alpha=0.5, line_width=1)
+
+            #Add network graph to the plot
+            plot.renderers.append(network_graph)
+
+            st.bokeh_chart(show(plot))
+        #     fig, ax = plt.subplots()
+        #     ax = nx.draw(grafo_matrice, with_labels=True,node_color='skyblue',pos=nx.spectral_layout(grafo_matrice))
+        #     st.pyplot(fig)
 elif selezione == 'Da Nx a Ny':
     nodo_partenza=np.int(st.sidebar.number_input('Scrivere nodo di partenza (Numero intero):'))
     nodo_arrivo=np.int(st.sidebar.number_input('Scrivere nodo di arrivo (Numero intero):'))
@@ -71,5 +101,5 @@ elif selezione == 'Da Nx a Ny':
             lunghezza
         with right_column1:
             fig, ax = plt.subplots()
-            ax = nx.draw(grafo_matrice, with_labels=True, node_color='skyblue',pos=nx.circular_layout(grafo_matrice))
+            ax = nx.draw(grafo_matrice, with_labels=True, node_color='skyblue',pos=nx.random_layout(grafo_matrice))
             st.pyplot(fig) 
